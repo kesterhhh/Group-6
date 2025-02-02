@@ -151,4 +151,5 @@ JOIN service_familiarity sf ON f.RespondentID = sf.RespondentID;
 - Visualization Tools
 
 ## Dashboard Access
-[Link to Interactive Dashboard]
+Link to Interactive Dashboard[here](https://app.powerbi.com/view?r=eyJrIjoiMDY2NTAxYjUtYjI1My00MDc0LTliYTgtYTZhYmNlYjJmMGMzIiwidCI6IjUxN2QzNTAyLTI5MDEtNGRlMi1hODdiLTk1YzUwN2E5YTA4OCJ9)
+
