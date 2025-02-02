@@ -49,7 +49,6 @@ Comprehensive analysis of FinTech product adoption, user preferences, and market
 ```sql
 -- Example of our analysis approach
 -- STEP 1: Data Cleaning and Standardization
--- Run this block first
 CREATE OR ALTER VIEW vw_fintech_clean AS
 WITH age_categories AS (
     SELECT 
