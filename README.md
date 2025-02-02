@@ -10,7 +10,7 @@ Comprehensive analysis of FinTech product adoption, user preferences, and market
 - Olamilekan Koyi (tktrades24@gmail.com)
 
 ## Analysis Highlights
-![DAshboard](1_User_Demographics.jpg)
+![DAshboard](Fintech-Group.jpg)
 
 ### Key Metrics
 - Total Users: 38
@@ -48,17 +48,60 @@ Comprehensive analysis of FinTech product adoption, user preferences, and market
 ### Analysis Framework
 ```sql
 -- Example of our analysis approach
-CREATE OR ALTER VIEW vw_service_usage_intensity AS
+-- STEP 1: Data Cleaning and Standardization
+-- Run this block first
+CREATE OR ALTER VIEW vw_fintech_clean AS
+WITH age_categories AS (
+    SELECT 
+        RespondentID,
+        CASE 
+            WHEN Age = '18-24' THEN 'Young Adult'
+            WHEN Age = '25-34' THEN 'Middle Adult'
+			  WHEN Age = '35-44' THEN 'Senior Adult'
+            WHEN Age = '45+' THEN 'Elder'
+        END AS age_group,
+        Age as original_age
+    FROM fintech_response
+),
+service_familiarity AS (
+    SELECT 
+        RespondentID,
+        COALESCE(Moniepoint, 'Not Familiar') as Moniepoint,
+        COALESCE(Kuda, 'Not Familiar') as Kuda,
+        COALESCE(Opay, 'Not Familiar') as Opay,
+        COALESCE(Paystack, 'Not Familiar') as Paystack,
+        COALESCE(Piggyvest, 'Not Familiar') as Piggyvest,
+        COALESCE(Cowrywise, 'Not Familiar') as Cowrywise,
+        COALESCE(FairMoney, 'Not Familiar') as FairMoney,
+        COALESCE(Palmpay, 'Not Familiar') as Palmpay,
+        COALESCE(Flutterwave, 'Not Familiar') as Flutterwave,
+        COALESCE(Paga, 'Not Familiar') as Paga
+    FROM fintech_response
+)
+
 SELECT 
-    age_group,
-    SUM(CASE 
-        WHEN digital_banking_freq = 'Daily' THEN 3
-        WHEN digital_banking_freq = 'Weekly' THEN 2
-        WHEN digital_banking_freq = 'Monthly' THEN 1
-        ELSE 0 
-    END) as digital_banking_intensity
-FROM vw_fintech_clean
-GROUP BY age_group;
+    f.RespondentID,
+    ac.age_group,
+    ac.original_age,
+    f.Which_of_the_following_financial_services_do_you_currently_use as current_services,
+    f.Digital_Mobile_Banking as digital_banking_freq,
+    f.Micro_Lending_Platforms as lending_freq,
+    f.Savings_Investment_Platforms as investment_freq,
+    f.Cryptocurrency_Services as crypto_freq,
+    f.Blockchain_Services as blockchain_freq,
+    f.Mobile_Payment as mobile_payment_freq,
+    f.For_the_services_you_ve_used_how_often_do_you_use_them_Remittance_Solutions as remit_freq,
+    f.Crowdfunding_Platforms as crowd_freq,
+    f.FinTech_Adoption_trends as adoption_trends,
+    f.Fee_Sensitivity_Score as fee_sensitivity,
+    f.What_s_most_important_to_you_in_a_financial_service as priority_features,
+    f.Education_Level as education,
+    f.How_do_you_prefer_to_access_financial_services as access_pref,
+    sf.Moniepoint, sf.Kuda, sf.Opay, sf.Paystack, sf.Piggyvest,
+    sf.Cowrywise, sf.FairMoney, sf.Palmpay, sf.Flutterwave, sf.Paga
+FROM fintech_response f
+JOIN age_categories ac ON f.RespondentID = ac.RespondentID
+JOIN service_familiarity sf ON f.RespondentID = sf.RespondentID;
 ```
 
 ## Key Findings & Recommendations
