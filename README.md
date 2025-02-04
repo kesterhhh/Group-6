@@ -1,5 +1,3 @@
-Here's the complete updated version ready for your Git repository:
-
 # Nigerian FinTech Market Analysis Project
 
 ## Project Overview
@@ -134,8 +132,6 @@ JOIN service_familiarity sf ON f.RespondentID = sf.RespondentID;
    - Access preference analysis
 
 ## Dashboard Access
-[![Power BI Dashboard](https://img.shields.io/badge/Power_BI-Dashboard-yellow)](https://app.powerbi.com/view?r=eyJrIjoiMDY2NTAxYjUtYjI1My00MDc0LTliYTgtYTZhYmNlYjJmMGMzIiwidCI6IjUxN2QzNTAyLTI5MDEtNGRlMi1hODdiLTk1YzUwN2E5YTA4OCJ9)
-
 ![Dashboard](Fintech-Group.jpg)
 
 Interactive Power BI dashboard available [here](https://app.powerbi.com/view?r=eyJrIjoiMDY2NTAxYjUtYjI1My00MDc0LTliYTgtYTZhYmNlYjJmMGMzIiwidCI6IjUxN2QzNTAyLTI5MDEtNGRlMi1hODdiLTk1YzUwN2E5YTA4OCJ9)
